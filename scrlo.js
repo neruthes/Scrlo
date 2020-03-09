@@ -60,7 +60,8 @@
 		modalTag.setAttribute('id', 'uuid_cd101a8082fe4bb1b94efb131c7724dd');
 		modalTag.setAttribute('style', `
 			/*background: rgba(128, 128, 128, 0.4);*/
-			box-shadow: rgba(0, 0, 0, 0.08) 0 5px 20px 2px;
+			border-radius: 8px;
+			box-shadow: rgba(0, 0, 0, 0.12) 0 8px 25px 4px;
 			position: fixed;
 			z-index: 9999;
 			top: 20px;
@@ -117,12 +118,12 @@
 			padding: 0 0 15px !important;
 		}
 		.uuid_cd101a8082fe4bb1b94efb131c7724dd-option_inner {
-			font-size: 20px !important;
+			font-size: 18px !important;
 			font-weight: 400 !important;
 			background: #FFF !important;
 			border: 1px solid #DDD !important;
 			border-radius: 4px !important;
-			padding: 10px !important;
+			padding: 6px 10px !important;
 			cursor: pointer;
 		}
 		.uuid_cd101a8082fe4bb1b94efb131c7724dd-option_inner[data-loading="true"] {
@@ -145,7 +146,7 @@
 					margin: 0px 0 0;
 					cursor: pointer;
 				" onclick="window.uuid_cd101a8082fe4bb1b94efb131c7724dd_close()">╳</span>
-				<h1 id="uuid_cd101a8082fe4bb1b94efb131c7724dd-h1">Choose Script</h1>
+				<h1 id="uuid_cd101a8082fe4bb1b94efb131c7724dd-h1"><a href="https://github.com/neruthes/Scrlo" style="color: inherit !important; text-decoration: none !important; background: #FFF !important;">Scrlo</a></h1>
 			</div>
 			<div id="uuid_cd101a8082fe4bb1b94efb131c7724dd-list">
 				${listHtml}
