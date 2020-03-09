@@ -39,7 +39,7 @@ Save this bookmarklet to bookmark bar. Change the URL of the JSON file to your J
 javascript:(function(u){window.conf_cd101a80=u;var xhr=new XMLHttpRequest();xhr.open('GET','//raw.githubusercontent.com/neruthes/Scrlo/master/scrlo.js');xhr.onload=function(){eval(xhr.responseText)};xhr.send()})('//neruthes.xyz/Scrlo/config-example.json')
 ```
 
-If you have security concerns over loading the script from `https://neruthes.xyz/Scrlo/scrlo.js`, you may host your own copy of the file. Note that the license is GNU AGPL v3.
+If you have security concerns over loading the script from `https://raw.githubusercontent.com/neruthes/Scrlo/master/scrlo.js`, you may host your own copy of the file. Note that the license is GNU AGPL v3.
 
 ## Configuration
 
