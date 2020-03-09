@@ -4,11 +4,13 @@ Script Loader.
 
 ## Introduction
 
+When you do not have TamperMonkey or something. We still live in an era where Holoflows does not exist.
+
 ## Usage
 
 ### Create Config
 
-Create a config JSON and publish it online (e.g. GitHub Pages). Get the URL of the JSON file.
+Create a config JSON and publish it online (e.g. GitHub Gist). Get the URL of the JSON file.
 
 ```json
 {
@@ -29,7 +31,7 @@ Create a config JSON and publish it online (e.g. GitHub Pages). Get the URL of t
 
 The `match` field may be omitted.
 
-### Bookmarklet
+### Add Bookmarklet
 
 Save this bookmarklet to bookmark bar. Change the URL of the JSON file to your JSON file.
 
@@ -37,7 +39,7 @@ Save this bookmarklet to bookmark bar. Change the URL of the JSON file to your J
 javascript:(function(u){window.conf_cd101a80=u;var xhr=new XMLHttpRequest();xhr.open('GET','//neruthes.xyz/Scrlo/scrlo.js');xhr.onload=function(){eval(xhr.responseText)};xhr.send()})('https://example.com/my-config.json')
 ```
 
-If you have concerns over loading the script from `https://neruthes.xyz/Scrlo/scrlo.js`, you may host your own copy of the file.
+If you have security concerns over loading the script from `https://neruthes.xyz/Scrlo/scrlo.js`, you may host your own copy of the file. Note that the license is GNU AGPL v3.
 
 ## Configuration
 
