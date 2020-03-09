@@ -1,0 +1,29 @@
+{
+  "scripts": [
+    {
+      "name": "Type: Sans-Serif",
+      "url": "https://neruthes.xyz/jsu/readability/type-strong-sansserif.js",
+      "match": "^http"
+    },
+    {
+      "name": "Type: Serif",
+      "url": "https://neruthes.xyz/jsu/readability/type-strong-serif.js",
+      "match": "^http"
+    },
+    {
+      "name": "Reset",
+      "url": "https://neruthes.xyz/jsu/readability/reset-styles.js",
+      "match": null
+    },
+    {
+      "name": "Night Mode",
+      "url": "https://neruthes.xyz/jsu/readability/night.js",
+      "match": null
+    },
+    {
+      "name": "Day Mode",
+      "url": "https://neruthes.xyz/jsu/readability/day.js",
+      "match": null
+    }
+  ]
+}
