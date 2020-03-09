@@ -45,6 +45,13 @@ If you have security concerns over loading the script from `https://neruthes.xyz
 
 // TODO
 
+## References
+
+### Design Principles of Scripts
+
+- If the script alters the way the webpage is presented (e.g. CSS mods), running it again should revert its effects.
+- If the script opens a modal, it should close the Scrlo panel before opening the modal.
+
 ## Copyright
 
 Copyright (C) 2020 Neruthes (neruthes.xyz)
