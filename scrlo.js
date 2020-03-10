@@ -63,7 +63,6 @@
 		var modalTag = document.createElement('div');
 		modalTag.setAttribute('id', 'SKgMCCj1j4Vj');
 		modalTag.setAttribute('style', `
-			/*background: rgba(128, 128, 128, 0.4);*/
 			border-radius: 8px;
 			box-shadow: rgba(0, 0, 0, 0.12) 0 8px 25px 4px;
 			position: fixed;
@@ -107,6 +106,7 @@
 			font-weight: 600 !important;
 			color: #000 !important;
 			background: #FFF !important;
+			border: none;
 			padding: 0 !important;
 			margin: 0 !important;
 		}
