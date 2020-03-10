@@ -6,6 +6,8 @@ Script Loader.
 
 When you do not have TamperMonkey or something. We still live in an era where Holoflows does not exist.
 
+[[Video demo on Twitter](https://twitter.com/neruthes/status/1237026920325238786)]
+
 ## Usage
 
 ### Create Config
