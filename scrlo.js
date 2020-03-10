@@ -22,8 +22,12 @@
 		window.SKgMCCj1j4Vj_run(url);
 	};
 	window.SKgMCCj1j4Vj_run = function (url) {
-		var xhr = new XMLHttpRequest();
 		var optionNode = document.querySelector(`[data-src="${url}"]`) || { setAttribute: function () {} };
+		if (url.indexOf('javascript:') === 0) {
+			eval(url.slice(11));
+			return 0;
+		};
+		var xhr = new XMLHttpRequest();
 		xhr.open('GET', url);
 		xhr.onload = function(){
 			setTimeout(function () {

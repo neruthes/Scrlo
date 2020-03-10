@@ -59,7 +59,10 @@ Field       | Mandatory     | Description
 `match`     | No            | String[RegExp]. Show this option in the list of available scripts only when this RegExp can match the URL of the current page.
 `auto`      | No            | Array[String[RegExp]]. Automatically executed this script if any of the RegExps can match the URL of the current page.
 
-If un script is executed automatically, this script will appear in the list regardless of the `match` field.
+## Behaviors
+
+- If un script is executed automatically, this script will appear in the list regardless of the `match` field.
+- If the `url` field start with "javascript:", it will be treated as un script instead of un URL.
 
 ## References
 
