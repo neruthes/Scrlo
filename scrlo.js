@@ -180,6 +180,27 @@
 		document.querySelectorAll('.SKgMCCj1j4Vj-option_inner').forEach(function (node) {
 			node.addEventListener('click', window.SKgMCCj1j4Vj_choose);
 		});
+
+		// Autorun after rendering
+		var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
+			console.log(script);
+			if (!script.auto || script.auto.length === 0) {
+				return false;
+			};
+			for (var i = 0; i < script.auto.length; i++) {
+				if (location.href.match(new RegExp(script.auto[i]))) {
+					return true;
+				};
+			};
+		});
+		console.log('[Scrlo] var autoScripts', autoScripts);
+		if (!window.SKgMCCj1j4Vj_firstrun) {
+			window.SKgMCCj1j4Vj_firstrun = true;
+			autoScripts.map(function (scriptObj) {
+				console.log(`[Scrlo] Automatically executing: ${scriptObj.url}`);
+				window.SKgMCCj1j4Vj_run(scriptObj.url);
+			});
+		};
 	};
 
 	window.SKgMCCj1j4Vj_forceLoadRemoteConfig = function () {
@@ -223,24 +244,4 @@
 		window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
 		return 0;
     })(window.SopMbn8);
-
-	var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
-		console.log(script);
-		if (!script.auto || script.auto.length === 0) {
-			return false;
-		};
-		for (var i = 0; i < script.auto.length; i++) {
-			if (location.href.match(new RegExp(script.auto[i]))) {
-				return true;
-			};
-		};
-	});
-	console.log('[Scrlo] var autoScripts', autoScripts);
-	if (!window.SKgMCCj1j4Vj_firstrun) {
-		window.SKgMCCj1j4Vj_firstrun = true;
-		autoScripts.map(function (scriptObj) {
-			console.log(`[Scrlo] Automatically executing: ${scriptObj.url}`);
-			window.SKgMCCj1j4Vj_run(scriptObj.url);
-		});
-	};
 })();
