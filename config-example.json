@@ -11,7 +11,7 @@
         {
             "name": "Enhance Wikipedia",
             "url": "https://neruthes.xyz/jsu/readability/reset-styles.js",
-            "match": "wikipedia.org"
+            "auto": "wikipedia.org"
         }
     ]
 }

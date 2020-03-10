@@ -14,24 +14,28 @@
 		}, 355);
 	};
 	if (document.querySelector('#SKgMCCj1j4Vj')) {
-		window.SKgMCCj1j4Vj_close()
+		window.SKgMCCj1j4Vj_close();
 		return 1;
 	};
 	window.SKgMCCj1j4Vj_choose = function (e) {
-		var src = e.target.getAttribute('data-src');
+		var url = e.target.getAttribute('data-src');
+		window.SKgMCCj1j4Vj_run(url);
+	};
+	window.SKgMCCj1j4Vj_run = function (url) {
 		var xhr = new XMLHttpRequest();
-		e.target.setAttribute('data-loading', 'true');
-		xhr.open('GET', src);
+		var optionNode = document.querySelector(`[data-src="${url}"]`) || { setAttribute: function () {} };
+		xhr.open('GET', url);
 		xhr.onload = function(){
 			setTimeout(function () {
-				e.target.setAttribute('data-loading', 'false');
+				optionNode.setAttribute('data-loading', 'false');
 			}, 300);
 			eval(xhr.responseText);
-			console.log('Loaded: ' + src);
+			console.log('[Scrlo] Loaded: ' + url);
 		};
 		xhr.send();
+		optionNode.setAttribute('data-loading', 'true');
 		setTimeout(function () {
-			e.target.setAttribute('data-loading', 'false');
+			optionNode.setAttribute('data-loading', 'false');
 		}, 1200);
 	};
 	window.SKgMCCj1j4Vj_render = function () {
@@ -42,7 +46,7 @@
 				return !!location.href.match(new RegExp(script.match));
 			};
 		});
-		console.log('listOfScripts', listOfScripts);
+		console.log('[Scrlo] var listOfScripts', listOfScripts);
 		listOfScripts.map(function (script) {
 			var tag1 = document.createElement('link');
 			var tag2 = document.createElement('link');
@@ -53,7 +57,6 @@
 			document.head.appendChild(tag1);
 			document.head.appendChild(tag2);
 		});
-
 		var listHtml = listOfScripts.map(function (script, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
 				<div class="SKgMCCj1j4Vj-option_inner" data-src="${script.url}" data-wildcard-match="${ script.match ? 'false' : 'true' }">
@@ -71,8 +74,8 @@
 			z-index: 9999;
 			top: 20px;
 			right: 20px;
-			width: calc(100vw - 40px);
-			max-width: 300px;
+			width: auto !important;
+			min-width: 240px;
 			height: calc(100vh - 80px);
 			max-height: 500px;
 			padding: 0px;
@@ -91,18 +94,18 @@
 			font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif !important;
 			background: #FFF !important;
 			border-radius: 8px !important;
-			width: calc(100vw - 40px) !important;
-			max-width: 300px !important;
+			width: auto !important;
+			min-width: 240px !important;
 			height: calc(100vh - 80px) !important;
 			max-height: 500px !important;
-			padding: 20px !important;
+			padding: 20px 5px 20px 20px !important;
 			margin: 0 auto !important;
 			overflow: hidden !important;
 		}
 		#SKgMCCj1j4Vj-header {
 			color: #000 !important;
 			background: #FFF !important;
-			padding: 0px 0 15px !important;
+			padding: 0 15px 15px 0 !important;
 		}
 		#SKgMCCj1j4Vj-h1 {
 			font-size: 22px !important;
@@ -122,7 +125,7 @@
 		.SKgMCCj1j4Vj-option {
 			color: #000 !important;
 			background: #FFF !important;
-			padding: 0 0 15px !important;
+			padding: 0 15px 15px 0 !important;
 		}
 		.SKgMCCj1j4Vj-option_inner {
 			font-size: 18px !important;
@@ -198,19 +201,40 @@
 			var cacheTime = parseInt(localStorage['lskey_R7Cbnr7n9aYT_conf'].split('||')[0]);
 			var currentTime = Date.now();
 			if (currentTime - cacheTime < 300000) { // 300 seconds
-				console.log('Loading config from localStorage.');
+				console.log('[Scrlo] Loading config from localStorage.');
 				window.conf_dd101a80_obj = JSON.parse(localStorage['lskey_R7Cbnr7n9aYT_conf'].split('||')[1]);
 				window.SKgMCCj1j4Vj_render();
 				return 0;
 			} else {
-				console.log('Loading config from remote.');
+				localStorage.removeItem('lskey_R7Cbnr7n9aYT_conf');
+				console.log('[Scrlo] Loading config from remote.');
 				window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
 				return 0;
-			}
+			};
 		} else {
-			console.log('Loading config from remote.');
+			console.log('[Scrlo] Loading config from remote.');
 			window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
 			return 0;
 		};
     })(window.SopMbn8);
+
+	var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
+		console.log(script);
+		if (!script.auto || script.auto.length === 0) {
+			return false;
+		};
+		for (var i = 0; i < script.auto.length; i++) {
+			if (location.href.match(new RegExp(script.auto[i]))) {
+				return true;
+			};
+		};
+	});
+	console.log('[Scrlo] var autoScripts', autoScripts);
+	if (!window.SKgMCCj1j4Vj_firstrun) {
+		window.SKgMCCj1j4Vj_firstrun = true;
+		autoScripts.map(function (scriptObj) {
+			console.log(`[Scrlo] Automatically executing: ${scriptObj.url}`);
+			window.SKgMCCj1j4Vj_run(scriptObj.url);
+		});
+	};
 })();

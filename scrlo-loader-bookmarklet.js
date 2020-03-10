@@ -1,3 +1,11 @@
+/*
+	@author Neruthes <i@neruthes.xyz>
+	@copyright Copyright (C) 2020 Neruthes <i@neruthes.xyz>
+	@license AGPL-3.0 https://www.gnu.org/licenses/agpl-3.0.html
+    @repo https://github.com/neruthes/Scrlo
+    @usage_guide Minify this file and use it as a bookmarklet.
+*/
+
 (function(x, m, s, u) {
     window.conf_cd101a80 = u;
     var d = function () {

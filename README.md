@@ -50,7 +50,16 @@ Notice that running arbitrary scripts may be harmful for your cybersecurity. Lea
 
 ## Configuration
 
-// TODO
+### Entry Data Fields
+
+Field       | Mandatory     | Description
+----------- | ------------- | -----------
+`name`      | Yes           | String. Name.
+`url`       | Yes           | String. URL of the JavaScript file.
+`match`     | No            | String[RegExp]. Show this option in the list of available scripts only when this RegExp can match the URL of the current page.
+`auto`      | No            | Array[String[RegExp]]. Automatically executed this script if any of the RegExps can match the URL of the current page.
+
+If un script is executed automatically, this script will appear in the list regardless of the `match` field.
 
 ## References
 
