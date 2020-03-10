@@ -43,6 +43,9 @@
 		}, 1200);
 	};
 	window.SKgMCCj1j4Vj_render = function () {
+		if (document.querySelector('#SKgMCCj1j4Vj')) {
+			document.querySelector('#SKgMCCj1j4Vj').remove();
+		};
 		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
 			if (!script.match) {
 				return true;
@@ -206,20 +209,18 @@
 			var currentTime = Date.now();
 			if (currentTime - cacheTime < 300000) { // 300 seconds
 				console.log('[Scrlo] Loading config from localStorage.');
-				window.conf_dd101a80_obj = JSON.parse(localStorage['lskey_R7Cbnr7n9aYT_conf'].split('||')[1]);
-				window.SKgMCCj1j4Vj_render();
-				return 0;
-			} else {
-				localStorage.removeItem('lskey_R7Cbnr7n9aYT_conf');
-				console.log('[Scrlo] Loading config from remote.');
-				window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
-				return 0;
+				try {
+					window.conf_dd101a80_obj = JSON.parse(localStorage['lskey_R7Cbnr7n9aYT_conf'].split('||')[1]);
+					window.SKgMCCj1j4Vj_render();
+					return 0;
+				} catch (e) {
+				};
 			};
-		} else {
-			console.log('[Scrlo] Loading config from remote.');
-			window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
-			return 0;
 		};
+		localStorage.removeItem('lskey_R7Cbnr7n9aYT_conf');
+		console.log('[Scrlo] Loading config from remote.');
+		window.SKgMCCj1j4Vj_forceLoadRemoteConfig();
+		return 0;
     })(window.SopMbn8);
 
 	var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
