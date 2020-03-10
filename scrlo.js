@@ -8,8 +8,10 @@
 
 (function(){
 	window.SKgMCCj1j4Vj_close = function () {
-		window.SKgMCCj1j4Vj = false;
-		document.querySelector('#SKgMCCj1j4Vj').remove();
+		document.querySelector('#SKgMCCj1j4Vj').style.opacity = '0';
+		setTimeout(function () {
+			document.querySelector('#SKgMCCj1j4Vj').remove();
+		}, 355);
 	};
 	if (document.querySelector('#SKgMCCj1j4Vj')) {
 		window.SKgMCCj1j4Vj_close()
@@ -74,6 +76,7 @@
 			height: calc(100vh - 80px);
 			max-height: 500px;
 			padding: 0px;
+			transition: opacity 350ms ease;
 		`);
 		modalTag.innerHTML = `
 		<style>
