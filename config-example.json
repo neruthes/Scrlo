@@ -2,11 +2,11 @@
     "scripts": [
         {
             "name": "Href Jump",
-            "url": "javascript:location.href = 'https://gist.github.com/neruthes/c46d0c63fec2fb4f8a30739150d8aa3f/edit'"
+            "url": "javascript:location.href='https://neruthes.xyz'"
         },
         {
-            "name": "Type: Sans-Serif",
-            "url": "https://neruthes.xyz/jsu/readability/type-strong-sansserif.js"
+            "name": "Switch Font",
+            "url": "https://neruthes.xyz/jsu/readability/switch-font.js"
         },
         {
             "name": "Night Mode",
