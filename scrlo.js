@@ -96,7 +96,7 @@
 		#uuid_cd101a8082fe4bb1b94efb131c7724dd-header {
 			color: #000 !important;
 			background: #FFF !important;
-			padding: 0px 0 25px !important;
+			padding: 0px 0 15px !important;
 		}
 		#uuid_cd101a8082fe4bb1b94efb131c7724dd-h1 {
 			font-size: 22px !important;
