@@ -34,7 +34,7 @@
 				optionNode.setAttribute('data-loading', 'false');
 			}, 300);
 			eval(xhr.responseText);
-			console.log('[Scrlo] Loaded: ' + url);
+			console.log('[Scrlo] Executed: ' + url);
 		};
 		xhr.send();
 		optionNode.setAttribute('data-loading', 'true');
@@ -43,6 +43,7 @@
 		}, 1200);
 	};
 	window.SKgMCCj1j4Vj_render = function () {
+		console.log('EXEC: SKgMCCj1j4Vj_render');
 		if (document.querySelector('#SKgMCCj1j4Vj')) {
 			document.querySelector('#SKgMCCj1j4Vj').remove();
 		};
