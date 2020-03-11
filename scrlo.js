@@ -129,6 +129,8 @@
 			background: #FFF !important;
 			height: calc(100vh - 190px) !important;
 			overflow: auto !important;
+			-webkit-user-select: none;
+			user-select: none;
 		}
 		.SKgMCCj1j4Vj-option {
 			color: #000 !important;
