@@ -93,7 +93,20 @@
 		var listHtml = listOfScripts.map(function (scriptObj, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
 				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ scriptObj.id || 'undefined' }" data-src="${scriptObj.url}" data-wildcard-match="${ scriptObj.match ? 'false' : 'true' }">
-					${scriptObj.name}
+					<span class="SKgMCCj1j4Vj-option_icon" style="
+						display: inline-block !important;
+						width: 28px !important;
+						height: 28px !important;
+						margin: 0 8px 0 0;
+					">
+						<img class="SKgMCCj1j4Vj-option_icon_img" src="${window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', scriptObj.id)}" style="
+							display: inline-block !important;
+							width: 28px !important;
+							height: 28px !important;
+							border-radius: 4px !important;
+						">
+					</span>
+					<span class="SKgMCCj1j4Vj-option_inner_text">${scriptObj.name}</span>
 				</div>
 			</div>`;
 		}).join('');
@@ -168,7 +181,7 @@
 			background: #FFF !important;
 			border: 1px solid #DDD !important;
 			border-radius: 4px !important;
-			padding: 6px 10px !important;
+			padding: 6px 10px 6px 6px !important;
 			cursor: pointer;
 		}
 		.SKgMCCj1j4Vj-option_inner[data-loading="true"] {
@@ -176,10 +189,11 @@
 			cursor: not-allowed !important;
 		}
 		.SKgMCCj1j4Vj-option_inner[data-loading="false"] {}
-		.SKgMCCj1j4Vj-option_inner[data-wildcard-match="true"]::before {
-			content: "* ";
+		.SKgMCCj1j4Vj-option_inner[data-wildcard-match="true"] .SKgMCCj1j4Vj-option_inner_text::before {
+			content: "*";
 			font-family: 'JetBrains Mono', 'Menlo', monospace !important;
 			font-size: inherit !important;
+			margin-right: 4px !important;
 			opacity: 0.5 !important;
 		}
 		.SKgMCCj1j4Vj-option_inner:hover,
