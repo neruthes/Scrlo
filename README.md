@@ -4,11 +4,9 @@ Script Loader.
 
 ## Introduction
 
-When you do not have TamperMonkey or something.
+When you do not have TamperMonkey or something. [[Video demo on Twitter](https://twitter.com/neruthes/status/1237839106266107904)].
 
 ![img](https://neruthes.github.io/_github_assets/img/52b58aca4023.png)
-
-[[Video demo on Twitter](https://twitter.com/neruthes/status/1237839106266107904)]
 
 ## Usage
 
