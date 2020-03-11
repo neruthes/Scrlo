@@ -92,22 +92,29 @@
 		});
 		var listHtml = listOfScripts.map(function (scriptObj, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
-				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ scriptObj.id || 'undefined' }" data-src="${scriptObj.url}" data-wildcard-match="${ scriptObj.match ? 'false' : 'true' }">
+				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ scriptObj.id || 'undefined' }" data-src="${scriptObj.url}" data-wildcard-match="${ scriptObj.match ? 'false' : 'true' }" style="
+					height: 44px !important;
+					padding: 6px !important;
+				">
 					<span class="SKgMCCj1j4Vj-option_icon" style="
-						display: inline-block !important;
+						display: block !important;
 						float: left !important;
-						width: 28px !important;
-						height: 28px !important;
+						width: 30px !important;
+						height: 30px !important;
 						margin: 0 8px 0 0;
 					">
 						<img class="SKgMCCj1j4Vj-option_icon_img" src="${window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', scriptObj.id)}" style="
-							display: inline-block !important;
-							width: 28px !important;
-							height: 28px !important;
-							border-radius: 4px !important;
+							display: block !important;
+							width: 30px !important;
+							height: 30px !important;
+							border-radius: 3px !important;
 						">
 					</span>
-					<span class="SKgMCCj1j4Vj-option_inner_text">${scriptObj.name}</span>
+					<span class="SKgMCCj1j4Vj-option_inner_text" style="
+						display: block;
+						line-height: 30px !important;
+						height: 30px !important;
+					">${scriptObj.name}</span>
 				</div>
 			</div>`;
 		}).join('');
@@ -174,15 +181,15 @@
 		.SKgMCCj1j4Vj-option {
 			color: #000 !important;
 			background: #FFF !important;
-			padding: 0 15px 15px 0 !important;
+			padding: 0 15px 10px 0 !important;
 		}
 		.SKgMCCj1j4Vj-option_inner {
-			font-size: 18px !important;
+			font-size: 16px !important;
 			font-weight: 400 !important;
 			background: #FFF !important;
 			border: 1px solid #DDD !important;
 			border-radius: 4px !important;
-			padding: 6px 10px 6px 6px !important;
+			min-width: 220px;
 			cursor: pointer;
 		}
 		.SKgMCCj1j4Vj-option_inner[data-loading="true"] {
