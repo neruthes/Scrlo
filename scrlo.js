@@ -189,7 +189,7 @@
 			cursor: not-allowed !important;
 		}
 		.SKgMCCj1j4Vj-option_inner[data-loading="false"] {}
-		.SKgMCCj1j4Vj-option_inner[data-wildcard-match="true"] .SKgMCCj1j4Vj-option_inner_text::before {
+		.SKgMCCj1j4Vj-option_inner[data-wildcard-match="true"] .SKgMCCj1j4Vj-option_inner_text::after {
 			content: "*";
 			font-family: 'JetBrains Mono', 'Menlo', monospace !important;
 			font-size: inherit !important;
@@ -239,11 +239,12 @@
 		};
 
 		// Prerun all std scripts (with "id" field) which match current URL
+		// But excluding whose URLs start with "javascript:"
 		var prerunScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
 			return !!(typeof scriptObj.id === 'string');
 		}).filter(function (scriptObj) {
 			return isListable(scriptObj);
-		});
+		}).filter(scriptObj => scriptObj.url.indexOf('javascript:') !== 0);
 		window.SKgMCCj1j4Vj_prerunScripts = prerunScripts;
 		window.conf_dd101a80_std_scripts_count = prerunScripts.length;
 		window.conf_dd101a80_std_scripts_progress = 0;
