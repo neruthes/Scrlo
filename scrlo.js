@@ -28,7 +28,7 @@
 		console.log(`[EXEC] SKgMCCj1j4Vj_run_std`);
 		console.log('scriptId', scriptId);
 		window[`uuid_${scriptId}_func`]({invoker:'Scrlo'}, function (res, callback) {
-			console.log(res);g
+			console.log(res);
 			callback && callback();
 		});
 	};
