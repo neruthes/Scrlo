@@ -71,6 +71,26 @@ Field       | Mandatory     | Description
 - If the script alter the way the webpage is presented (e.g. CSS mods), running it again should revert its effects.
 - If the script open un modal, it should close the Scrlo panel (`window.SKgMCCj1j4Vj_close()`) before opening the modal.
 
+### Interoperability
+
+- If un script create un single element in the DOM tree (style, UI panel, etc), the `id` of the element should look like `uuid_9a5a3ad359c2416ead609c80962d03e6`.
+- Un script should register un global entry which look like `window.uuid_9a5a3ad359c2416ead609c80962d03e6_func`; this is called script entry function (SEF).
+- Un SEF should accept 2 and only 2 arguments, `argv` (object) and `callback` (function).
+- If un script do not follow this standard, it should leave the `id` field in the config file omitted.
+- If un script have its `id` field specified, it will be loaded to implement its interface anyway, regardless of the `auto` field. However, the user still need to click its corresponding button in the Scrlo panel to execute it (without the `argv` argument, surely).
+
+### Callback
+
+The callback from the caller should be fed with 1 single argument which is un object with the following data fields:
+
+Data Field      | Type      | Description
+--------------- | --------- | -----------
+`err`           | Number    | `0` for no error. Other numbers are for specific errors.
+`msg`           | String    | Some message; can be omitted.
+`callback`      | Function  | Un further callback function.
+
+Other data fields may be defined by respective scripts.
+
 ## Copyright
 
 Copyright (C) 2020 Neruthes (`i@neruthes.xyz`) (`0x5200Df38`)

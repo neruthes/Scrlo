@@ -18,10 +18,16 @@
 		return 1;
 	};
 	window.SKgMCCj1j4Vj_choose = function (e) {
-		var url = e.target.getAttribute('data-src');
-		window.SKgMCCj1j4Vj_run(url);
+		if (e.target.getAttribute('data-script-id') !== 'undefined') {
+			window.SKgMCCj1j4Vj_run_std(e.target.getAttribute('data-script-id'));
+		} else {
+			window.SKgMCCj1j4Vj_run_hotload(e.target.getAttribute('data-src'));
+		};
 	};
-	window.SKgMCCj1j4Vj_run = function (url) {
+	window.SKgMCCj1j4Vj_run_std = function (scriptId) {
+		window[`uuid_${id}_func`]();
+	};
+	window.SKgMCCj1j4Vj_run_hotload = function (url) {
 		var optionNode = document.querySelector(`[data-src="${url}"]`) || { setAttribute: function () {} };
 		if (url.indexOf('javascript:') === 0) {
 			eval(url.slice(11));
@@ -47,11 +53,21 @@
 		if (document.querySelector('#SKgMCCj1j4Vj')) {
 			document.querySelector('#SKgMCCj1j4Vj').remove();
 		};
-		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
-			if (!script.match) {
+		var isAuto = function (scriptObj) {
+			if (!scriptObj.auto || scriptObj.auto.length === 0) {
+				return false;
+			};
+			for (var i = 0; i < scriptObj.auto.length; i++) {
+				if (location.href.match(new RegExp(scriptObj.auto[i]))) {
+					return true;
+				};
+			};
+		};
+		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
+			if (!scriptObj.match || isAuto(scriptObj)) {
 				return true;
 			} else {
-				return !!location.href.match(new RegExp(script.match));
+				return !!location.href.match(new RegExp(scriptObj.match));
 			};
 		});
 		console.log('[Scrlo] var listOfScripts', listOfScripts);
@@ -67,7 +83,7 @@
 		});
 		var listHtml = listOfScripts.map(function (script, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
-				<div class="SKgMCCj1j4Vj-option_inner" data-src="${script.url}" data-wildcard-match="${ script.match ? 'false' : 'true' }">
+				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ script.id || 'undefined' }" data-src="${script.url}" data-wildcard-match="${ script.match ? 'false' : 'true' }">
 					${script.name}
 				</div>
 			</div>`;
@@ -185,26 +201,40 @@
 			node.addEventListener('click', window.SKgMCCj1j4Vj_choose);
 		});
 
-		// Autorun after rendering
-		var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (script) {
-			console.log(script);
-			if (!script.auto || script.auto.length === 0) {
-				return false;
+		window.SKgMCCj1j4Vj_runAllAutoRun = function () { // Autorun after all std scripts are loaded
+			var autoScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
+				return isAuto(scriptObj);
+			});
+			console.log('[Scrlo] var autoScripts', autoScripts);
+			if (!window.SKgMCCj1j4Vj_firstrun) {
+				window.SKgMCCj1j4Vj_firstrun = true;
+				autoScripts.map(function (scriptObj) {
+					console.log(`[Scrlo] Automatically executing: ${scriptObj.url}`);
+					document.querySelector(`[data-src="${scriptObj.url}"]`).click();
+				});
 			};
-			for (var i = 0; i < script.auto.length; i++) {
-				if (location.href.match(new RegExp(script.auto[i]))) {
-					return true;
+		};
+
+		// Prerun all std scripts (width "id" field)
+		var prerunScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
+			return !!(typeof scriptObj.id === 'string');
+		});
+		window.conf_dd101a80_std_scripts_count = prerunScripts.length;
+		window.conf_dd101a80_std_scripts_progress = 0;
+		prerunScripts.map(function (scriptObj) {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', scriptObj.url);
+			xhr.onload = function (e) {
+				eval(e.target.responseText);
+				window.conf_dd101a80_std_scripts_progress++;
+				console.log(`Loaded std script [${scriptObj.id}]: ${scriptObj.url}`);
+				if (window.conf_dd101a80_std_scripts_progress === window.conf_dd101a80_std_scripts_count) {
+					console.log('Loaded all std scripts.');
+					window.SKgMCCj1j4Vj_runAllAutoRun();
 				};
 			};
+			xhr.send();
 		});
-		console.log('[Scrlo] var autoScripts', autoScripts);
-		if (!window.SKgMCCj1j4Vj_firstrun) {
-			window.SKgMCCj1j4Vj_firstrun = true;
-			autoScripts.map(function (scriptObj) {
-				console.log(`[Scrlo] Automatically executing: ${scriptObj.url}`);
-				window.SKgMCCj1j4Vj_run(scriptObj.url);
-			});
-		};
 	};
 
 	window.SKgMCCj1j4Vj_forceLoadRemoteConfig = function () {
