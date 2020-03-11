@@ -6,7 +6,7 @@ Script Loader.
 
 When you do not have TamperMonkey or something. We still live in un era where Holoflows do not exist.
 
-[[Video demo on Twitter](https://twitter.com/neruthes/status/1237465625917882368)]
+[[Video demo on Twitter](https://twitter.com/neruthes/status/1237469917231722496)]
 
 ## Usage
 
