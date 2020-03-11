@@ -25,7 +25,7 @@
 		};
 	};
 	window.SKgMCCj1j4Vj_run_std = function (scriptId) {
-		window[`uuid_${id}_func`]();
+		window[`uuid_${scriptId}_func`]();
 	};
 	window.SKgMCCj1j4Vj_run_hotload = function (url) {
 		var optionNode = document.querySelector(`[data-src="${url}"]`) || { setAttribute: function () {} };
@@ -55,21 +55,25 @@
 		};
 		var isAuto = function (scriptObj) {
 			if (!scriptObj.auto || scriptObj.auto.length === 0) {
-				return false;
+				return false; // No auto condition specified
 			};
 			for (var i = 0; i < scriptObj.auto.length; i++) {
 				if (location.href.match(new RegExp(scriptObj.auto[i]))) {
-					return true;
+					return true; // Yes when any auto condition is satisfied
 				};
 			};
 		};
-		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
+		var isListable = function (scriptObj) {
 			if (!scriptObj.match || isAuto(scriptObj)) {
-				return true;
+				return true; // Is wildcard match or auto
 			} else {
-				return !!location.href.match(new RegExp(scriptObj.match));
+				return !!location.href.match(new RegExp(scriptObj.match)); // Is matched with currrent URL
 			};
+		};
+		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
+			return isListable(scriptObj);
 		});
+		window.SKgMCCj1j4Vj_listOfScripts = listOfScripts;
 		console.log('[Scrlo] var listOfScripts', listOfScripts);
 		listOfScripts.map(function (script) {
 			var tag1 = document.createElement('link');
@@ -81,10 +85,10 @@
 			document.head.appendChild(tag1);
 			document.head.appendChild(tag2);
 		});
-		var listHtml = listOfScripts.map(function (script, i) {
+		var listHtml = listOfScripts.map(function (scriptObj, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
-				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ script.id || 'undefined' }" data-src="${script.url}" data-wildcard-match="${ script.match ? 'false' : 'true' }">
-					${script.name}
+				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ scriptObj.id || 'undefined' }" data-src="${scriptObj.url}" data-wildcard-match="${ scriptObj.match ? 'false' : 'true' }">
+					${scriptObj.name}
 				</div>
 			</div>`;
 		}).join('');
@@ -215,10 +219,13 @@
 			};
 		};
 
-		// Prerun all std scripts (width "id" field)
+		// Prerun all std scripts (with "id" field) which match current URL
 		var prerunScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
 			return !!(typeof scriptObj.id === 'string');
+		}).filter(function (scriptObj) {
+			return isListable(scriptObj);
 		});
+		window.SKgMCCj1j4Vj_prerunScripts = prerunScripts;
 		window.conf_dd101a80_std_scripts_count = prerunScripts.length;
 		window.conf_dd101a80_std_scripts_progress = 0;
 		prerunScripts.map(function (scriptObj) {
