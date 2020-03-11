@@ -27,7 +27,10 @@
 	window.SKgMCCj1j4Vj_run_std = function (scriptId) {
 		console.log(`[EXEC] SKgMCCj1j4Vj_run_std`);
 		console.log('scriptId', scriptId);
-		window[`uuid_${scriptId}_func`]();
+		window[`uuid_${scriptId}_func`]({invoker:'Scrlo'}, function (res, callback) {
+			console.log(res);g
+			callback && callback();
+		});
 	};
 	window.SKgMCCj1j4Vj_run_hotload = function (url) {
 		var optionNode = document.querySelector(`[data-src="${url}"]`) || { setAttribute: function () {} };
