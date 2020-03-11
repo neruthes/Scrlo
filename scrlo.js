@@ -166,6 +166,8 @@
 		<div id="SKgMCCj1j4Vj-inner">
 			<div id="SKgMCCj1j4Vj-header">
 				<span style="
+					color: #000 !important;
+					background: #FFF !important;
 					font-size: 22px;
 					font-weight: 900;
 					float: right;
