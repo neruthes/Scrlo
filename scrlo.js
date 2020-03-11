@@ -95,6 +95,7 @@
 				<div class="SKgMCCj1j4Vj-option_inner" data-script-id="${ scriptObj.id || 'undefined' }" data-src="${scriptObj.url}" data-wildcard-match="${ scriptObj.match ? 'false' : 'true' }">
 					<span class="SKgMCCj1j4Vj-option_icon" style="
 						display: inline-block !important;
+						float: left !important;
 						width: 28px !important;
 						height: 28px !important;
 						margin: 0 8px 0 0;
