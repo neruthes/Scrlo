@@ -18,10 +18,16 @@
 		return 1;
 	};
 	window.SKgMCCj1j4Vj_choose = function (e) {
-		if (e.target.getAttribute('data-script-id') !== 'undefined') {
-			window.SKgMCCj1j4Vj_run_std(e.target.getAttribute('data-script-id'));
+		console.log('e.target', e.target);
+		var domPtr = e.target;
+		while (!domPtr.classList.contains('SKgMCCj1j4Vj-option_inner')) {
+			domPtr = domPtr.parentElement;
+		};
+		console.log('domPtr', domPtr);
+		if (domPtr.getAttribute('data-script-id') !== 'undefined' && domPtr.getAttribute('data-src').indexOf('javascript:') !== 0) { // Has "id" and is not inline script
+			window.SKgMCCj1j4Vj_run_std(domPtr.getAttribute('data-script-id'));
 		} else {
-			window.SKgMCCj1j4Vj_run_hotload(e.target.getAttribute('data-src'));
+			window.SKgMCCj1j4Vj_run_hotload(domPtr.getAttribute('data-src'));
 		};
 	};
 	window.SKgMCCj1j4Vj_run_std = function (scriptId) {
@@ -97,6 +103,7 @@
 					padding: 6px !important;
 				">
 					<span class="SKgMCCj1j4Vj-option_icon" style="
+						background: rgba(0, 0, 0, 0) !important;
 						display: block !important;
 						float: left !important;
 						width: 30px !important;
@@ -104,6 +111,7 @@
 						margin: 0 8px 0 0;
 					">
 						<img class="SKgMCCj1j4Vj-option_icon_img" src="${window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', scriptObj.id)}" style="
+							background: rgba(0, 0, 0, 0) !important;
 							display: block !important;
 							width: 30px !important;
 							height: 30px !important;
@@ -111,7 +119,9 @@
 						">
 					</span>
 					<span class="SKgMCCj1j4Vj-option_inner_text" style="
-						display: block;
+						color: #000 !important;
+						background: rgba(0, 0, 0, 0) !important;
+						display: block !important;
 						line-height: 30px !important;
 						height: 30px !important;
 					">${scriptObj.name}</span>
