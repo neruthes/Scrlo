@@ -192,8 +192,9 @@
 		.SKgMCCj1j4Vj-option_inner[data-wildcard-match="true"] .SKgMCCj1j4Vj-option_inner_text::after {
 			content: "*";
 			font-family: 'JetBrains Mono', 'Menlo', monospace !important;
-			font-size: inherit !important;
-			margin-right: 4px !important;
+			font-size: 0.6em !important;
+			vertical-align: top;
+			margin-left: 2px !important;
 			opacity: 0.5 !important;
 		}
 		.SKgMCCj1j4Vj-option_inner:hover,
