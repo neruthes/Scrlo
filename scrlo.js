@@ -25,6 +25,8 @@
 		};
 	};
 	window.SKgMCCj1j4Vj_run_std = function (scriptId) {
+		console.log(`[EXEC] SKgMCCj1j4Vj_run_std`);
+		console.log('scriptId', scriptId);
 		window[`uuid_${scriptId}_func`]();
 	};
 	window.SKgMCCj1j4Vj_run_hotload = function (url) {
