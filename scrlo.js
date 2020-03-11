@@ -50,8 +50,12 @@
 			setTimeout(function () {
 				optionNode.setAttribute('data-loading', 'false');
 			}, 300);
-			eval(xhr.responseText);
-			console.log('[Scrlo] Executed: ' + url);
+			if (xhr.status === 200 || xhr.status === 304) {
+				eval(xhr.responseText);
+				console.log('[Scrlo] Executed: ' + url);
+			} else {
+				console.log('[Scrlo] Cannot load: ' + url + ` [Status ${xhr.status}]`);
+			};
 		};
 		xhr.send();
 		optionNode.setAttribute('data-loading', 'true');
