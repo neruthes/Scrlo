@@ -86,15 +86,16 @@ Field       | Mandatory     | Description
 
 ### Callback
 
-The callback from the caller should be fed with 1 single argument which is un object with the following data fields:
+The callback from the caller should be fed with 1 argument (`res`) at `arguments[0]` which is un object with the following data fields:
 
 Data Field      | Type      | Description
 --------------- | --------- | -----------
 `err`           | Number    | `0` for no error. Other numbers are for specific errors.
 `msg`           | String    | Some message; can be omitted.
-`callback`      | Function  | Un further callback function.
 
 Other data fields may be defined by respective scripts.
+
+Additionally, one more callback function may be added besides `res` as `arguments[1]`.
 
 ## Copyright
 
