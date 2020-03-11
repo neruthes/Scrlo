@@ -48,6 +48,11 @@ If you have security concerns over loading the script from `https://raw.githubus
 
 Notice that running arbitrary scripts may be harmful for your cybersecurity. Learn more about [XSS](https://en.wikipedia.org/wiki/XSS) und [CSRF](https://en.wikipedia.org/wiki/CSRF).
 
+### Write Good Scripts
+
+Example: [neruthes/jsu/readability/night.js](https://github.com/neruthes/jsu/blob/master/readability/night.js).
+
+
 ## Configuration
 
 ### Entry Data Fields
