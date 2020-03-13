@@ -216,7 +216,7 @@
 			font-family: 'JetBrains Mono', 'Menlo', monospace !important;
 			font-size: 0.6em !important;
 			vertical-align: top;
-			margin-left: 2px !important;
+			margin-left: 4px !important;
 			opacity: 0.5 !important;
 		}
 		.SKgMCCj1j4Vj-option_inner:hover,
