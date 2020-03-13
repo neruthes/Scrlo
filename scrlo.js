@@ -139,7 +139,7 @@
 			border-radius: 8px;
 			box-shadow: rgba(0, 0, 0, 0.12) 0 8px 25px 4px;
 			position: fixed;
-			z-index: 9999;
+			z-index: 2147483640;
 			top: 20px;
 			right: 20px;
 			width: auto !important;
