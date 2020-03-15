@@ -52,7 +52,6 @@ Notice that running arbitrary scripts may be harmful for your cybersecurity. Lea
 
 Example: [neruthes/jsu/readability/night.js](https://github.com/neruthes/jsu/blob/master/readability/night.js).
 
-
 ## Configuration
 
 ### Entry Data Fields

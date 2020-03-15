@@ -242,9 +242,23 @@
 				${listHtml}
 			</div>
 		</div>`;
+
 		document.body.appendChild(modalTag);
+
 		document.querySelectorAll('.SKgMCCj1j4Vj-option_inner').forEach(function (node) {
 			node.addEventListener('click', window.SKgMCCj1j4Vj_choose);
+		});
+		window.SKgMCCj1j4Vj_xhr_icon = [];
+		document.querySelectorAll('.SKgMCCj1j4Vj-option img').forEach(function (node, i) {
+			window.SKgMCCj1j4Vj_xhr_icon[i] = new XMLHttpRequest();
+			window.SKgMCCj1j4Vj_xhr_icon[i].open('GET', node.src);
+			window.SKgMCCj1j4Vj_xhr_icon[i].onload = function (e) {
+				console.log(e);
+				if (e.status == 404 || e.status == 403) {
+					node.setAttribute('src', window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', '_default_icon'));
+				};
+			};
+			window.SKgMCCj1j4Vj_xhr_icon[i].send();
 		});
 
 		window.SKgMCCj1j4Vj_runAllAutoRun = function () { // Autorun after all std scripts are loaded
