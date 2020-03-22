@@ -28,7 +28,7 @@ Create un config JSON and [publish it online](config-example.json) (e.g. GitHub 
         {
             "name": "Enhance Wikipedia",
             "url": "https://neruthes.xyz/jsu/readability/reset-styles.js",
-            "match": "wikipedia.org"
+            "match": [ "wikipedia.org" ]
         }
     ]
 }
@@ -61,7 +61,8 @@ Field       | Mandatory     | Description
 `name`      | Yes           | String. Name.
 `id`        | Yes           | String[UUID]. UUID, hex, lowercase, hyphenless. Unique for each script.
 `url`       | Yes           | String. URL of the JavaScript file.
-`match`     | No            | String[RegExp]. Show this option in the list of available scripts only when this RegExp can match the URL of the current page.
+`spqr`      | No            | Load from [SPQR](https://github.com/neruthes/spqr) (Scrlo Public Queryable Registration) instead of the value of the `url` field.
+`match`     | No            | Array[String[RegExp]]. Show this option in the list of available scripts only when any RegExp can match the URL of the current page.
 `auto`      | No            | Array[String[RegExp]]. Automatically executed this script if any of the RegExps can match the URL of the current page.
 
 ## Behaviors

@@ -51,7 +51,11 @@
 				optionNode.setAttribute('data-loading', 'false');
 			}, 300);
 			if (xhr.status === 200 || xhr.status === 304) {
-				eval(xhr.responseText);
+				if (xhr.responseText.slice(0, 1) !== '<') {
+					eval(xhr.responseText);
+				} else {
+					console.log('XHR error', xhr);
+				}
 				console.log('[Scrlo] Executed: ' + url);
 			} else {
 				console.log('[Scrlo] Cannot load: ' + url + ` [Status ${xhr.status}]`);
@@ -69,6 +73,7 @@
 			document.querySelector('#SKgMCCj1j4Vj').remove();
 		};
 		var isAuto = function (scriptObj) {
+			// TODO: Judge by spqr.json instead of user config
 			if (!scriptObj.auto || scriptObj.auto.length === 0) {
 				return false; // No auto condition specified
 			};
@@ -79,26 +84,57 @@
 			};
 		};
 		var isListable = function (scriptObj) {
+			// TODO: Judge by spqr.json instead of user config
 			if (!scriptObj.match || isAuto(scriptObj)) {
 				return true; // Is wildcard match or auto
 			} else {
-				return !!location.href.match(new RegExp(scriptObj.match)); // Is matched with currrent URL
+				// return !!location.href.match(new RegExp(scriptObj.match)); // Is matched with currrent URL
+				for (var i = 0; i < scriptObj.match.length; i++) {
+					if (location.href.match(new RegExp(scriptObj.match[i]))) {
+						return true;
+					};
+				};
+				return false;
 			};
 		};
 		var listOfScripts = window.conf_dd101a80_obj.scripts.filter(function (scriptObj) {
 			return isListable(scriptObj);
+		}).map(function (scriptObj) {
+			if (!scriptObj.spqr) {
+				scriptObj.iconUrl = window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', scriptObj.id);
+				return scriptObj;
+			} else {
+				scriptObj.url = `https://neruthes.xyz/spqr/db/${scriptObj.id}/index.js`;
+				scriptObj.iconUrl = `https://neruthes.xyz/spqr/db/${scriptObj.id}/icon.png`;
+				return scriptObj;
+				// return {
+				// 	spqr: true,
+				// 	id: scriptObj.id,
+				// 	url: `https://neruthes.xyz/spqr/db/${scriptObj.id}/index.js`,
+				// 	iconUrl: `https://neruthes.xyz/spqr/db/${scriptObj.id}/icon.png`
+				// };
+			};
 		});
 		window.SKgMCCj1j4Vj_listOfScripts = listOfScripts;
+		window.SKgMCCj1j4Vj_spqr_metadata = {};
 		console.log('[Scrlo] var listOfScripts', listOfScripts);
 		listOfScripts.map(function (script) {
 			var tag1 = document.createElement('link');
 			var tag2 = document.createElement('link');
+			var tag3 = document.createElement('link');
+			var tag4 = document.createElement('link');
 			tag1.setAttribute('rel', 'subresource');
 			tag2.setAttribute('rel', 'prefetch');
+			tag3.setAttribute('rel', 'subresource');
+			tag4.setAttribute('rel', 'prefetch');
 			tag1.setAttribute('href', script.url);
 			tag2.setAttribute('href', script.url);
+			tag3.setAttribute('href', script.iconUrl);
+			tag4.setAttribute('href', script.iconUrl);
 			document.head.appendChild(tag1);
 			document.head.appendChild(tag2);
+			document.head.appendChild(tag3);
+			document.head.appendChild(tag4);
 		});
 		var listHtml = listOfScripts.map(function (scriptObj, i) {
 			return `<div class="SKgMCCj1j4Vj-option">
@@ -114,7 +150,7 @@
 						height: 30px !important;
 						margin: 0 8px 0 0;
 					">
-						<img class="SKgMCCj1j4Vj-option_icon_img" src="${window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', scriptObj.id)}" style="
+						<img class="SKgMCCj1j4Vj-option_icon_img" src="${scriptObj.iconUrl}" data-spqr="${scriptObj.spqr ? 'true' : 'false'}" style="
 							background: rgba(0, 0, 0, 0) !important;
 							display: block !important;
 							width: 30px !important;
@@ -255,7 +291,13 @@
 			window.SKgMCCj1j4Vj_xhr_icon[i].onload = function (e) {
 				console.log(e);
 				if (e.status == 404 || e.status == 403) {
-					node.setAttribute('src', window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', '_default_icon'));
+					var defaultIconUrl = '';
+					if (node.getAttribute('data-spqr') === true) {
+						defaultIconUrl = 'https://neruthes.xyz/spqr/assets/_default_icon.png';
+					} else {
+						defaultIconUrl = window.conf_dd101a80_obj.meta.icon_url_template.replace('{{ID}}', '_default_icon');
+					};
+					node.setAttribute('src', defaultIconUrl);
 				};
 			};
 			window.SKgMCCj1j4Vj_xhr_icon[i].send();
@@ -289,9 +331,13 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', scriptObj.url);
 			xhr.onload = function (e) {
-				eval(e.target.responseText);
+				if (e.target.responseText.slice(0, 1) !== '<') {
+					eval(e.target.responseText);
+					console.log(`Loaded std script [${scriptObj.id}]: ${scriptObj.url}`);
+				} else {
+					console.log('XHR error', e.target);
+				};
 				window.conf_dd101a80_std_scripts_progress++;
-				console.log(`Loaded std script [${scriptObj.id}]: ${scriptObj.url}`);
 				if (window.conf_dd101a80_std_scripts_progress === window.conf_dd101a80_std_scripts_count) {
 					console.log('Loaded all std scripts.');
 					window.SKgMCCj1j4Vj_runAllAutoRun();
