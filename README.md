@@ -98,6 +98,10 @@ Other data fields may be defined by respective scripts.
 
 Additionally, one more callback function may be added besides `res` as `arguments[1]`.
 
+## Script Management
+
+[SPQR](https://github.com/neruthes/spqr) is under construction.
+
 ## Copyright
 
 Copyright (C) 2020 Neruthes (`i@neruthes.xyz`) (`0x5200Df38`)
