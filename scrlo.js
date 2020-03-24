@@ -329,7 +329,7 @@
 		window.conf_dd101a80_std_scripts_progress = 0;
 		prerunScripts.map(function (scriptObj) {
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', scriptObj.url);
+			xhr.open('GET', scriptObj.url + '?t=' + Date.now());
 			xhr.onload = function (e) {
 				if (e.target.responseText.slice(0, 1) !== '<') {
 					eval(e.target.responseText);
